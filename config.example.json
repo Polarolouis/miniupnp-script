@@ -1,5 +1,5 @@
-# "service-name":["Description", internal_port, external_port]
 {
+	"service-name":["Description", internal_port, external_port],
 	"web":["Web HTTP port", 80, 80],
 	"web-secure":["Web HTTPS port", 443, 443]
 }
