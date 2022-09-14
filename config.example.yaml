@@ -1,0 +1,17 @@
+wireguard:
+  description: "Wireguard port"
+  internal_port: 51820
+  external_port: 51820
+  protocol: 'UDP'
+
+transmission-tcp:
+  description: "Transmission TCP peer port"
+  internal_port: 51413
+  external_port: 51413
+  protocol: 'TCP'
+
+transmission-udp:
+  description: "Transmission UDP peer port"
+  internal_port: 51413
+  external_port: 51413
+  protocol: 'UDP'

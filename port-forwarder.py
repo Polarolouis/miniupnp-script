@@ -15,10 +15,6 @@ except Exception as e:
 print('local ip address :', u.lanaddr)
 print('external ip address :', u.externalipaddress())
 print( u.statusinfo(), u.connectiontype())
-print('total bytes : sent', u.totalbytesent(), 'received', u.totalbytereceived())
-print('total packets : sent', u.totalpacketsent(), 'received', u.totalpacketreceived())
 
-print(u.addportmapping(12000, 'TCP', u.lanaddr, 12000, 'test port mapping', ''))
-input("Hit any key to interrupt port mapping")
-print(u.deleteportmapping(12000, 'TCP'))
+
 
