@@ -1,3 +1,14 @@
+# Forwarded port should be declared as :
+# service-name:
+#   internal_port: XXXX
+#   external_port: YYYY
+#   protocol: 'ZZZ'
+#
+# With XXXX the internal port, YYYY the external port and ZZZ the protocol (TCP or UDP)
+# Additional fields can be set:
+# description: "A description to help understand the port forwarding"
+
+
 wireguard:
   description: "Wireguard port"
   internal_port: 51820
