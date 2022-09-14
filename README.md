@@ -2,6 +2,12 @@
 A script to use miniupnpc to setup port forwarding for a homeserver
 
 ## How to use ?
+
+Install the requirements by running:
+```bash
+pip install -r requirements.txt
+```
+
 Fill in the configuration file : `config.yaml`. An example config is provided as `config.example.yaml`.
 
 To declare a port forwarding use the following syntax:
