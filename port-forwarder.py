@@ -13,8 +13,11 @@ except ImportError:
 verbose = True
 action = "open" # open, close, status
 
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+config_path = SCRIPT_DIR + '/config.yaml'
+
 # If no config exists we create one
-if not os.path.exists("config.yaml"):
+if not os.path.exists(config_path):
     print("No config file detected, populating one")
     dummy_config = """dummy-service:
   description: "Dummy service to change"
@@ -26,7 +29,7 @@ config_data = ""
 
 if verbose:
     print("Reading the config")
-with open("config.yaml", "r", encoding="utf8") as config_file:
+with open(config_path, "r", encoding="utf8") as config_file:
     config_data = config_file.read()
 
 if not config_data:
