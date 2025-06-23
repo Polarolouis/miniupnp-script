@@ -11,10 +11,10 @@ except ImportError:
 
 # Arguments
 verbose = True
-action = "open" # open, close, status
+action = "open"  # open, close, status
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-config_path = SCRIPT_DIR + '/config.yaml'
+config_path = SCRIPT_DIR + "/config.yaml"
 
 # If no config exists we create one
 if not os.path.exists(config_path):
@@ -51,9 +51,9 @@ except Exception as e:
     print("Exception : ", e)
     sys.exit(1)
 
-print('local ip address :', u.lanaddr)
-print('external ip address :', u.externalipaddress())
-print( u.statusinfo(), u.connectiontype())
+print("local ip address :", u.lanaddr)
+print("external ip address :", u.externalipaddress())
+print(u.statusinfo(), u.connectiontype())
 
 
 for service_name in config_data:
@@ -65,7 +65,9 @@ for service_name in config_data:
         external_port = data["external_port"]
         protocol = data["protocol"]
     else:
-        print(f"Error: {service_name}, missing one of the required keys internal_port, external_port or protocol, skipping the service.")
+        print(
+            f"Error: {service_name}, missing one of the required keys internal_port, external_port or protocol, skipping the service."
+        )
 
     if "description" in data.keys():
         if verbose:
@@ -73,5 +75,25 @@ for service_name in config_data:
         description = data["description"]
     else:
         description = ""
-
-    u.addportmapping(external_port, protocol, u.lanaddr, internal_port, description, '')
+    try:
+        res_add = u.addportmapping(
+            external_port, protocol, u.lanaddr, internal_port, description, ""
+        )
+        print(
+            f"Port mapping added for {service_name} on port {external_port} ({protocol}) to internal port {internal_port}."
+        )
+    except Exception as e:
+        print(
+            f"Error adding port mapping for {service_name} on port {external_port} ({protocol}) to internal port {internal_port}: {e}"
+        )
+        print("Trying to remove the port mapping if it exists.")
+        u.deleteportmapping(external_port, protocol)
+        print(
+            f"Port mapping for {service_name} on port {external_port} ({protocol}) to internal port {internal_port} removed."
+        )
+        res_add = u.addportmapping(
+            external_port, protocol, u.lanaddr, internal_port, description, ""
+        )
+        print(
+            f"Port mapping for {service_name} on port {external_port} ({protocol}) to internal port {internal_port} added again."
+        )
