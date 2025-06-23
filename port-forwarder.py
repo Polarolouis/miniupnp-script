@@ -92,7 +92,7 @@ for service_name in config_data:
             f"Port mapping for {service_name} on port {external_port} ({protocol}) to internal port {internal_port} removed."
         )
         res_add = u.addportmapping(
-            external_port, protocol, u.lanaddr, internal_port, description, ""
+            external_port, protocol, u.lanaddr, internal_port, description, 3600
         )
         print(
             f"Port mapping for {service_name} on port {external_port} ({protocol}) to internal port {internal_port} added again."
